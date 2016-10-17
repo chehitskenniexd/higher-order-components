@@ -23995,6 +23995,14 @@
 	
 	var _songs2 = _interopRequireDefault(_songs);
 	
+	var _playlists = __webpack_require__(297);
+	
+	var _playlists2 = _interopRequireDefault(_playlists);
+	
+	var _selectedPlaylists = __webpack_require__(298);
+	
+	var _selectedPlaylists2 = _interopRequireDefault(_selectedPlaylists);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
@@ -24006,7 +24014,9 @@
 	  progress: _progress2.default,
 	  selectedAlbum: _selectedAlbum2.default,
 	  selectedArtist: _selectedArtist2.default,
-	  songs: _songs2.default
+	  songs: _songs2.default,
+	  playlists: _playlists2.default,
+	  selectedPlaylists: _selectedPlaylists2.default
 	});
 
 /***/ },
@@ -24077,7 +24087,7 @@
 	    default:
 	      return state;
 	  }
-	};
+	}
 
 /***/ },
 /* 207 */
@@ -24563,21 +24573,21 @@
 	
 	var _ArtistsContainer2 = _interopRequireDefault(_ArtistsContainer);
 	
-	var _ArtistContainer = __webpack_require__(291);
+	var _ArtistContainer = __webpack_require__(292);
 	
 	var _ArtistContainer2 = _interopRequireDefault(_ArtistContainer);
 	
-	var _ArtistAlbums = __webpack_require__(293);
+	var _ArtistAlbums = __webpack_require__(294);
 	
 	var _ArtistAlbums2 = _interopRequireDefault(_ArtistAlbums);
 	
-	var _ArtistSongs = __webpack_require__(294);
+	var _ArtistSongs = __webpack_require__(295);
 	
 	var _ArtistSongs2 = _interopRequireDefault(_ArtistSongs);
 	
-	var _Playlists = __webpack_require__(296);
+	var _newPlaylistForm = __webpack_require__(299);
 	
-	var _Playlists2 = _interopRequireDefault(_Playlists);
+	var _newPlaylistForm2 = _interopRequireDefault(_newPlaylistForm);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24598,7 +24608,7 @@
 	        _react2.default.createElement(_reactRouter.Route, { path: 'albums', component: _ArtistAlbums2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'songs', component: _ArtistSongs2.default })
 	      ),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'playlists', component: _Playlists2.default, onEnter: '' })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'playlists', component: _newPlaylistForm2.default, onEnter: '' })
 	    )
 	  );
 	};
@@ -30832,7 +30842,7 @@
 	
 	var _reactRouter = __webpack_require__(217);
 	
-	var _ArtistsFilter = __webpack_require__(295);
+	var _ArtistsFilter = __webpack_require__(291);
 	
 	var _ArtistsFilter2 = _interopRequireDefault(_ArtistsFilter);
 
@@ -30840,197 +30850,6 @@
 
 /***/ },
 /* 291 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(172);
-	
-	var _Artist = __webpack_require__(292);
-	
-	var _Artist2 = _interopRequireDefault(_Artist);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  return {
-	    selectedArtist: state.selectedArtist,
-	    children: ownProps.children
-	  };
-	};
-	
-	var statefulComponentCreator = (0, _reactRedux.connect)(mapStateToProps);
-	var ArtistContainer = statefulComponentCreator(_Artist2.default);
-	exports.default = ArtistContainer;
-
-/***/ },
-/* 292 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	exports.default = function (props) {
-	  var selectedArtist = props.selectedArtist;
-	  var children = props.children;
-	
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      selectedArtist.name
-	    ),
-	    _react2.default.createElement(
-	      'ul',
-	      { className: 'nav nav-tabs' },
-	      _react2.default.createElement(
-	        'li',
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/artists/' + selectedArtist.id + '/albums', activeClassName: 'active' },
-	          'Albums'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'li',
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/artists/' + selectedArtist.id + '/songs', activeClassName: 'active' },
-	          'Songs'
-	        )
-	      )
-	    ),
-	    children ? _react2.default.cloneElement(children, { selectedArtist: selectedArtist }) : null
-	  );
-	};
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(217);
-	
-	var _SongsContainer = __webpack_require__(287);
-	
-	var _SongsContainer2 = _interopRequireDefault(_SongsContainer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 293 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	exports.default = function (props) {
-	  var selectedArtist = props.selectedArtist;
-	
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'Albums'
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row' },
-	      selectedArtist.albums && selectedArtist.albums.map(function (album) {
-	        return _react2.default.createElement(
-	          'div',
-	          { className: 'col-xs-4', key: album.id },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'thumbnail', to: '/albums/' + album.id },
-	            _react2.default.createElement('img', { src: album.imageUrl }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'caption' },
-	              _react2.default.createElement(
-	                'h5',
-	                null,
-	                _react2.default.createElement(
-	                  'span',
-	                  null,
-	                  album.name
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'small',
-	                null,
-	                album.songs.length,
-	                ' songs'
-	              )
-	            )
-	          )
-	        );
-	      })
-	    )
-	  );
-	};
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(217);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 294 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	exports.default = function (props) {
-	
-	  var selectedArtist = props.selectedArtist;
-	
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'Songs'
-	    ),
-	    _react2.default.createElement(_SongsContainer2.default, { songs: selectedArtist.songs })
-	  );
-	};
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _SongsContainer = __webpack_require__(287);
-	
-	var _SongsContainer2 = _interopRequireDefault(_SongsContainer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31114,7 +30933,266 @@
 	// }
 
 /***/ },
-/* 296 */
+/* 292 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _Artist = __webpack_require__(293);
+	
+	var _Artist2 = _interopRequireDefault(_Artist);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  return {
+	    selectedArtist: state.selectedArtist,
+	    children: ownProps.children
+	  };
+	};
+	
+	var statefulComponentCreator = (0, _reactRedux.connect)(mapStateToProps);
+	var ArtistContainer = statefulComponentCreator(_Artist2.default);
+	exports.default = ArtistContainer;
+
+/***/ },
+/* 293 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (props) {
+	  var selectedArtist = props.selectedArtist;
+	  var children = props.children;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      selectedArtist.name
+	    ),
+	    _react2.default.createElement(
+	      'ul',
+	      { className: 'nav nav-tabs' },
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/artists/' + selectedArtist.id + '/albums', activeClassName: 'active' },
+	          'Albums'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/artists/' + selectedArtist.id + '/songs', activeClassName: 'active' },
+	          'Songs'
+	        )
+	      )
+	    ),
+	    children ? _react2.default.cloneElement(children, { selectedArtist: selectedArtist }) : null
+	  );
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(217);
+	
+	var _SongsContainer = __webpack_require__(287);
+	
+	var _SongsContainer2 = _interopRequireDefault(_SongsContainer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 294 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (props) {
+	  var selectedArtist = props.selectedArtist;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      'Albums'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      selectedArtist.albums && selectedArtist.albums.map(function (album) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'col-xs-4', key: album.id },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'thumbnail', to: '/albums/' + album.id },
+	            _react2.default.createElement('img', { src: album.imageUrl }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'caption' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  album.name
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'small',
+	                null,
+	                album.songs.length,
+	                ' songs'
+	              )
+	            )
+	          )
+	        );
+	      })
+	    )
+	  );
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(217);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (props) {
+	
+	  var selectedArtist = props.selectedArtist;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      'Songs'
+	    ),
+	    _react2.default.createElement(_SongsContainer2.default, { songs: selectedArtist.songs })
+	  );
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _SongsContainer = __webpack_require__(287);
+	
+	var _SongsContainer2 = _interopRequireDefault(_SongsContainer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 296 */,
+/* 297 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var ADD_PLAYLIST = exports.ADD_PLAYLIST = 'ADD_PLAYLIST';
+	
+	var initialPlaylists = [];
+	
+	var addPlaylist = exports.addPlaylist = function addPlaylist(name) {
+	  return {
+	    type: ADD_PLAYLIST,
+	    playlist: { name: name }
+	  };
+	};
+	
+	var playlistsReducer = exports.playlistsReducer = function playlistsReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialPlaylists;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case ADD_PLAYLIST:
+	      return [].concat(_toConsumableArray(state), [action.playlist]);
+	    default:
+	      return state;
+	  }
+	};
+
+/***/ },
+/* 298 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = selectedPlaylistReducer;
+	var RECEIVE_PLAYLIST = 'RECEIVE_PLAYLIST';
+	var initialPlaylist = {};
+	
+	var receivePlaylist = exports.receivePlaylist = function receivePlaylist(playlist) {
+	  return {
+	    type: RECEIVE_PLAYLIST,
+	    playlist: playlist
+	  };
+	};
+	
+	function selectedPlaylistReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialPlaylist;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case RECEIVE_PLAYLIST:
+	      return action.playlist;
+	    default:
+	      return state;
+	  }
+	}
+
+/***/ },
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
