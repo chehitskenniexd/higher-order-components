@@ -24585,9 +24585,9 @@
 	
 	var _ArtistSongs2 = _interopRequireDefault(_ArtistSongs);
 	
-	var _newPlaylistForm = __webpack_require__(299);
+	var _NewPlaylistFormDecorator = __webpack_require__(300);
 	
-	var _newPlaylistForm2 = _interopRequireDefault(_newPlaylistForm);
+	var _NewPlaylistFormDecorator2 = _interopRequireDefault(_NewPlaylistFormDecorator);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24608,7 +24608,7 @@
 	        _react2.default.createElement(_reactRouter.Route, { path: 'albums', component: _ArtistAlbums2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'songs', component: _ArtistSongs2.default })
 	      ),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'playlists', component: _newPlaylistForm2.default, onEnter: '' })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'playlists', component: _NewPlaylistFormDecorator2.default, onEnter: '' })
 	    )
 	  );
 	};
@@ -31147,7 +31147,7 @@
 	  };
 	};
 	
-	var playlistsReducer = exports.playlistsReducer = function playlistsReducer() {
+	exports.default = function () {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialPlaylists;
 	  var action = arguments[1];
 	
@@ -31192,7 +31192,95 @@
 	}
 
 /***/ },
-/* 299 */
+/* 299 */,
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _NewPlaylistForm = __webpack_require__(301);
+	
+	var _NewPlaylistForm2 = _interopRequireDefault(_NewPlaylistForm);
+	
+	var _playlists = __webpack_require__(297);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewPlaylistFormDecorator = function NewPlaylistFormDecorator(FormComponent) {
+	  return function (_React$Component) {
+	    _inherits(DecoratorClass, _React$Component);
+	
+	    function DecoratorClass(props) {
+	      _classCallCheck(this, DecoratorClass);
+	
+	      var _this = _possibleConstructorReturn(this, (DecoratorClass.__proto__ || Object.getPrototypeOf(DecoratorClass)).call(this, props));
+	
+	      _this.state = {
+	        title: ''
+	      };
+	      _this.handleChange = _this.handleChange.bind(_this);
+	      _this.handleSubmitDec = _this.handleSubmitDec.bind(_this);
+	      return _this;
+	    }
+	
+	    _createClass(DecoratorClass, [{
+	      key: 'handleChange',
+	      value: function handleChange(event) {
+	        this.setState({ title: event.target.value });
+	        // console.log(this.state.title);
+	      }
+	    }, {
+	      key: 'handleSubmitDec',
+	      value: function handleSubmitDec(event) {
+	        console.log('ddeeeeeeecccccccc');
+	        event.preventDefault();
+	        this.props.handleSubmit(this.state.title);
+	        console.log('title submited:', this.state.title);
+	      }
+	    }, {
+	      key: 'render',
+	      value: function render() {
+	        return _react2.default.createElement(FormComponent, { handleSubmit: this.handleSubmitDec, handleChange: this.handleChange });
+	      }
+	    }]);
+	
+	    return DecoratorClass;
+	  }(_react2.default.Component);
+	};
+	
+	var DecoratedNewPlaylistForm = NewPlaylistFormDecorator(_NewPlaylistForm2.default);
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    handleSubmit: function handleSubmit(name) {
+	      console.log('dispatching:', name);
+	      dispatch((0, _playlists.addPlaylist)(name));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(DecoratedNewPlaylistForm);
+
+/***/ },
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31207,13 +31295,16 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = function () {
+	exports.default = function (_ref) {
+	    var handleChange = _ref.handleChange;
+	    var handleSubmit = _ref.handleSubmit;
+	
 	    return _react2.default.createElement(
 	        'div',
 	        { className: 'well' },
 	        _react2.default.createElement(
 	            'form',
-	            { className: 'form-horizontal' },
+	            { className: 'form-horizontal', onSubmit: handleSubmit },
 	            _react2.default.createElement(
 	                'fieldset',
 	                null,
@@ -31233,7 +31324,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-xs-10' },
-	                        _react2.default.createElement('input', { className: 'form-control', type: 'text' })
+	                        _react2.default.createElement('input', { className: 'form-control', onChange: handleChange, type: 'text' })
 	                    )
 	                ),
 	                _react2.default.createElement(

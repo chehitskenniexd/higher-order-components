@@ -1,17 +1,17 @@
-'use strict'
+'use strict';
 
-import React from 'react'
+import React from 'react';
 
-export default () => {
+export default ({handleChange, handleSubmit}) => {
     return (
         <div className="well">
-            <form className="form-horizontal">
+            <form className="form-horizontal" onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>New Playlist</legend>
                     <div className="form-group">
                         <label className="col-xs-2 control-label">Name</label>
                         <div className="col-xs-10">
-                            <input className="form-control" type="text" />
+                            <input className="form-control" onChange={handleChange} type="text" />
                         </div>
                     </div>
                     <div className="form-group">

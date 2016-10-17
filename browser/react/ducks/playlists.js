@@ -7,7 +7,8 @@ export const addPlaylist = name => ({
   playlist: { name }
 });
 
-export const playlistsReducer = (state = initialPlaylists, action) => {
+
+export default (state = initialPlaylists, action) => {
   switch (action.type) {
     case ADD_PLAYLIST:
       return [...state, action.playlist];
