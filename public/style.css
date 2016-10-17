@@ -40,6 +40,31 @@ sidebar {
         color: white; }
     sidebar .menu-item.active, sidebar .menu-item:hover {
       border-left: 3px solid #00bc8c; }
+    sidebar .menu-links {
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 3px solid #222222;
+    }
+    section p {
+      font-size: 18px;
+    }
+    #playlist-button {
+      display: block;
+      margin-left: 15px;
+      font: bold;
+      color: white;
+      background: #909090;
+      padding: 5px 10px;
+    }
+    #playlist-button:active{
+      background: #444444;
+    }
+    #playlist-button a{
+      font-size: 14px;
+    }
+    #playlist-button a:hover{
+      text-decoration: none;
+    }
 
 section p a {
   padding: 0 15px;

@@ -24575,6 +24575,10 @@
 	
 	var _ArtistSongs2 = _interopRequireDefault(_ArtistSongs);
 	
+	var _Playlists = __webpack_require__(296);
+	
+	var _Playlists2 = _interopRequireDefault(_Playlists);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = function () {
@@ -24593,7 +24597,8 @@
 	        { path: 'artists/:id', component: _ArtistContainer2.default, onEnter: _enterHooks.onArtistsEnter },
 	        _react2.default.createElement(_reactRouter.Route, { path: 'albums', component: _ArtistAlbums2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'songs', component: _ArtistSongs2.default })
-	      )
+	      ),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'playlists', component: _Playlists2.default, onEnter: '' })
 	    )
 	  );
 	};
@@ -30276,21 +30281,43 @@
 	    null,
 	    _react2.default.createElement('img', { src: '/juke.svg', className: 'logo' }),
 	    _react2.default.createElement(
-	      'section',
-	      null,
+	      'div',
+	      { className: 'menu-links' },
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/albums', activeClassName: 'menu-item active', className: 'menu-item' },
-	        'ALBUMS'
+	        'section',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/albums', activeClassName: 'menu-item active', className: 'menu-item' },
+	          'ALBUMS'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'section',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/artists', activeClassName: 'menu-item active', className: 'menu-item' },
+	          'ARTISTS'
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
 	      'section',
-	      null,
+	      { id: 'playlist-section' },
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/artists', activeClassName: 'menu-item active', className: 'menu-item' },
-	        'ARTISTS'
+	        'p',
+	        null,
+	        'PLAYLISTS'
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { id: 'playlist-button', className: 'btn example-btn' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/playlists' },
+	          '+PLAYLIST'
+	        )
 	      )
 	    )
 	  );
@@ -31085,6 +31112,79 @@
 	//         }
 	//     }
 	// }
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'well' },
+	        _react2.default.createElement(
+	            'form',
+	            { className: 'form-horizontal' },
+	            _react2.default.createElement(
+	                'fieldset',
+	                null,
+	                _react2.default.createElement(
+	                    'legend',
+	                    null,
+	                    'New Playlist'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        { className: 'col-xs-2 control-label' },
+	                        'Name'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-10' },
+	                        _react2.default.createElement('input', { className: 'form-control', type: 'text' })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-xs-10 col-xs-offset-2' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { type: 'submit', className: 'btn btn-success' },
+	                            'Create Playlist'
+	                        )
+	                    )
+	                )
+	            )
+	        )
+	    );
+	};
+	
+	/*
+	return fetch('api/playlists', {
+	    method: 'POST',
+	    body: JSON.stringify(someData),
+	    headers: new Header({'Content-Type': 'application/json'})
+	})
+	.then( res=>res.json )
+	.then(playlist => console.log(playlist));
+	*/
 
 /***/ }
 /******/ ]);
