@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
+import DecoratedStatefulComponent from './ArtistsFilter'
 
 export default function (props) {
   const artists = props.artists;
@@ -9,6 +10,7 @@ export default function (props) {
   return (
     <div>
       <h3>Artists</h3>
+      <DecoratedStatefulComponent />
       <div className="list-group">
         {
           artists.map(artist => (
